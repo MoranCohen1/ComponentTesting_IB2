@@ -5,6 +5,8 @@
     <classes>
          <class name="chaining.CreateUser"/>
          <class name="chaining.GetUser"/>
+        <class name="chaining.UpdateUser"/>
+        <class name="chaining.DeleteUser"/>
         
     </classes>
   </test> <!-- ChainingTest -->
