@@ -4,6 +4,7 @@ import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
 
+import org.testng.ITestContext;
 import org.testng.annotations.Test;
 
 import io.restassured.http.ContentType;
@@ -11,17 +12,19 @@ import io.restassured.http.ContentType;
 public class DeleteUser {
 
 	@Test
-	public void deleteTest() {
+	public void deleteTest(ITestContext context) {
 		
-		baseURI="https://reqres.in";
+		int id= (int)context.getSuite().getAttribute("user_id");
+		baseURI="https://gorest.co.in";
 		
-		String token = "24f0bc307d63349dcd1579cb64f2ec2269bb1c960f85ee4b3b92d8b3205790ff";
+		String token = "5043973439f36f4aa12d28148817ed79d7f54f2c1ff33372b7c4ecc4fd519275";
 		given()
 			.contentType(ContentType.JSON) 
 			.accept(ContentType.JSON)
 			.headers("Authorization","Bearer "+token)
+			.pathParam("id", id)
 		.when()
-			.delete("/public/v2/users/2177")
+			.delete("/public/v2/users/{id}")
 		.then()
 			.statusCode(204)
 			.log().all();
